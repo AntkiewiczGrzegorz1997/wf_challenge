@@ -1,0 +1,30 @@
+.form-container {
+  width: 40vw;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  background-color: var(--light-purple);
+  border-radius: 10px;
+}
+
+.inputbox-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  margin: 0 1vw;
+}
+
+input {
+  height: 5vh;
+  border-radius: 10px;
+  border: none;
+}
+
+.submit-button {
+  height: 5vh;
+  border: none;
+  background-color: var(--purple);
+  margin: 0 1vw;
+  border-radius: 10px;
+}
