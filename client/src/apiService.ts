@@ -5,7 +5,7 @@ const url: string = 'http://localhost:3000/api/v1';
 export async function getPosts() {
   try {
     const response = await fetch(`${url}/posts`);
-    const data: Post[] = await response.json();
+    const data: CreatedPost[] = await response.json();
     return data;
   } catch (e) {
     console.log(e);
@@ -15,7 +15,7 @@ export async function getPosts() {
 export async function getPost(id: string) {
   try {
     const response = await fetch(`${url}/posts/${id}`);
-    const data: Post = await response.json();
+    const data: CreatedPost = await response.json();
     return data;
   } catch (e) {
     console.log(e);
@@ -50,7 +50,7 @@ export async function deletePost(id: string) {
   }
 }
 
-export async function updatePost(id: string, post: UpdatePost) {
+export async function updatePost(id: number, post: UpdatePost) {
   try {
     const response = await fetch(`${url}/posts/${id}`, {
       method: 'PUT',

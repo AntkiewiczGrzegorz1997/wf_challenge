@@ -1,22 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import AddPostForm from './components/AddPostForm';
+import AddUpdatePostForm from './components/AddUpdatePostForm';
 import './App.css';
 import { getPosts } from './apiService';
-import { Post } from './types/posts';
+import { Post, CreatedPost } from './types/posts';
+import Table from './components/Table';
+import { AppDispatch, RootState } from './redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { clickShowAddForm, fetchAllPosts } from './redux/post';
 
 function App() {
-  const [posts, setPosts] = useState<Post[]>();
+  const dispatch: AppDispatch = useDispatch();
+  const showAddForm: boolean = useSelector(
+    (state: RootState) => state.post.showAddForm
+  );
 
   useEffect(() => {
-    getPosts().then((res) => {
-      setPosts(res);
+    getPosts().then((data) => {
+      if (data) {
+        dispatch(fetchAllPosts(data));
+      }
     });
   }, []);
 
   return (
     <div>
-      <AddPostForm setPosts={setPosts} />
+      <button onClick={() => dispatch(clickShowAddForm())}>Create Post</button>
+
+      {/* <AddPostForm setPosts={setPosts} /> */}
+      <Table />
+      {}
+      {showAddForm && <AddUpdatePostForm />}
     </div>
   );
 }
