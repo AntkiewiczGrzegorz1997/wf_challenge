@@ -5,12 +5,14 @@ import { CreatedPost } from '../../types/posts';
 
 type PostState = {
   posts: CreatedPost[];
+  selectedPosts: number[];
   showAddForm: boolean;
   currentPost: null | CreatedPost;
 };
 
 const initialState: PostState = {
   posts: [],
+  selectedPosts: [],
   showAddForm: false,
   currentPost: null,
 };
@@ -21,16 +23,23 @@ const postSlice = createSlice({
   reducers: {
     fetchAllPosts: (state, action: PayloadAction<CreatedPost[]>) => {
       state.posts = [...action.payload];
+      state.selectedPosts = state.posts.map((post) => post.id);
+    },
+    //for selecting the points from the table and showing them on the webpage (selection based on ids)
+    selectPosts: (state, action: PayloadAction<number[]>) => {
+      state.selectedPosts = [...action.payload];
     },
     addPost: (state, action: PayloadAction<CreatedPost>) => {
       state.posts = [...state.posts, action.payload];
     },
 
     updateOnePost: (state, action: PayloadAction<CreatedPost>) => {
-      console.log(action.payload);
       state.posts = state.posts.map((post: CreatedPost) =>
         post.id === action.payload.id ? action.payload : post
       );
+      // state.selectedPosts = state.selectedPosts.map((post: CreatedPost) =>
+      //   post.id === action.payload.id ? action.payload : post
+      // );
     },
 
     deleteOnePost: (state, action: PayloadAction<number>) => {
@@ -49,6 +58,7 @@ const postSlice = createSlice({
 
 export const {
   fetchAllPosts,
+  selectPosts,
   addPost,
   updateOnePost,
   deleteOnePost,

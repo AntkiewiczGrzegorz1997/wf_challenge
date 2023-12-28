@@ -7,6 +7,7 @@ import Table from './components/Table';
 import { AppDispatch, RootState } from './redux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickShowAddForm, fetchAllPosts } from './redux/post';
+import Map from './components/Map';
 
 function App() {
   const dispatch: AppDispatch = useDispatch();
@@ -24,7 +25,9 @@ function App() {
 
   return (
     <div>
+      <div className='navBar'></div>
       <button onClick={() => dispatch(clickShowAddForm())}>Create Post</button>
+      <Map />
 
       {/* <AddPostForm setPosts={setPosts} /> */}
       <Table />

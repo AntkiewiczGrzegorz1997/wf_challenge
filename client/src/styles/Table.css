@@ -5,8 +5,13 @@ button {
 
 .delete-btn {
   color: red;
+  margin-right: 1vw;
 }
 
 .update-btn {
   color: green;
+}
+
+.dataTable {
+  width: 100vw;
 }
