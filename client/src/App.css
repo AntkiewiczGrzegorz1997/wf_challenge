@@ -5,6 +5,13 @@
   --white: #ffffff;
 }
 
+/* body {
+  background-image: url('../public/3d-grunge-room-interior-with-spotlight-smoky-atmosphere-background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+} */
+
 .overlay {
   position: fixed;
   top: 0;
@@ -21,7 +28,7 @@
 .addPostFormContainer {
   background-color: white;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   position: relative;
 }
 
@@ -35,34 +42,15 @@
   cursor: pointer;
 }
 
-.navbar {
-  margin: 2vh 1.5vw;
-  /* margin-left: 2vw;
-  margin-right: 2vw; */
+.map-table-container {
   display: flex;
-  justify-content: left;
-  align-items: center;
-  height: 6vh;
-  border-radius: 20px;
-  background-color: var(--light-purple);
-  box-shadow: 0 10px 10px #ccc;
+  flex-direction: row;
+  margin-top: 7vh;
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  gap: 3vw;
 }
 
-.navbutton {
-  background-color: var(--light-purple);
-  color: var(--purple);
-  font-weight: bold;
-  margin-right: 2vw;
-  margin-left: 2vw;
-  position: relative;
-}
-
-.underline:hover::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -3px; /* Adjust this to lower the underline */
-  height: 2px; /* Thickness of the underline */
-  background-color: var(--purple);
+.enlarge:hover {
+  transform: scale(1.4);
 }

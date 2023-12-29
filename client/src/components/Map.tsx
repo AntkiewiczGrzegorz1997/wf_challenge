@@ -79,7 +79,8 @@ export default function Map(/*{ mapCenter, geoJsonData, geoJsonKey }*/) {
       <MapContainer
         zoom={4}
         center={mapCenter}
-        style={{ height: '100%', width: '100%' }} /*className='map'*/
+        className='map'
+        // style={{ height: '100%', width: '100%' }} /*className='map'*/
       >
         <ChangeMapView center={mapCenter} />
 
@@ -115,7 +116,8 @@ export default function Map(/*{ mapCenter, geoJsonData, geoJsonKey }*/) {
                       src={post.image_url}
                       className='map-image'
                       onError={(e) => {
-                        e.currentTarget.src = 'https://placekitten.com/100/70';
+                        e.currentTarget.src =
+                          'https://placekitten.com/1000/700';
                         e.currentTarget.alt = 'default image';
                       }}
                     />

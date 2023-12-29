@@ -41,14 +41,11 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Table />
-      {showAddForm && <AddUpdatePostForm />}
-
-      <Map />
-
-      {/* <AddPostForm setPosts={setPosts} /> */}
-
-      {}
+      <div className='map-table-container'>
+        <Map />
+        <Table />
+        {showAddForm && <AddUpdatePostForm />}
+      </div>
     </div>
   );
 }

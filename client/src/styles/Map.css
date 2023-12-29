@@ -8,6 +8,19 @@
 }
 
 .map-container {
-  height: 50vh;
-  width: 40vw;
+  height: 74vh;
+  width: 48vw;
 }
+
+.map {
+  /* border-radius: 10px; */
+  height: 100%;
+  width: 100%;
+}
+
+/* .leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+} */

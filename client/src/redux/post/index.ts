@@ -25,7 +25,13 @@ const postSlice = createSlice({
   initialState: initialState,
   reducers: {
     fetchAllPosts: (state, action: PayloadAction<CreatedPost[]>) => {
-      state.posts = [...action.payload];
+      //ensuring that the posts are sorted based on created date
+      state.posts = [...action.payload].sort((a, b) => {
+        const dateA = new Date(a.created_at);
+        const dateB = new Date(b.created_at);
+        return dateA.getTime() - dateB.getTime();
+      });
+
       state.selectedPosts = state.posts.map((post) => post.id);
     },
     //for selecting the points from the table and showing them on the webpage (selection based on ids)
@@ -41,9 +47,6 @@ const postSlice = createSlice({
       state.posts = state.posts.map((post: CreatedPost) =>
         post.id === action.payload.id ? action.payload : post
       );
-      // state.selectedPosts = state.selectedPosts.map((post: CreatedPost) =>
-      //   post.id === action.payload.id ? action.payload : post
-      // );
     },
 
     updateMapCenter: (state, action: PayloadAction<L.LatLngExpression>) => {

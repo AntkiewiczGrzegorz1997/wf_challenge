@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import DataTable, { TableColumn } from 'react-data-table-component';
+import DataTable, {
+  TableColumn,
+  createTheme,
+} from 'react-data-table-component';
 import { CreatedPost } from '../types/posts';
 import { deletePost } from '../apiService';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
@@ -20,6 +23,71 @@ import {
 //   posts: CreatedPost[];
 //   setPosts: (posts: CreatedPost[]) => void;
 // };
+
+// :root {
+//   --light-purple: #cecbef;
+//   --purple: #501e96;
+//   --font-grey: #71706f;
+//   --white: #ffffff;
+// }
+
+// createTheme(
+//   'solarized',
+//   {
+//     text: {
+//       primary: '#268bd2',
+//       secondary: '#2aa198',
+//     },
+//     header: {
+//       fontSize: '40px',
+//       fontWeight: 'bold',
+//     },
+
+//     background: {
+//       default: 'rgba(0,0,0,.2)',
+//     },
+//     context: {
+//       background: '#501e96',
+//       text: '#FFFFFF',
+//     },
+//     body: {
+//       background: 'rgba(0,0,0,.2)',
+//     },
+
+//     divider: {
+//       default: '#073642',
+//     },
+//     action: {
+//       button: 'rgba(0,0,0,.2)',
+//       hover: 'rgba(0,0,0,.08)',
+//       disabled: 'rgba(0,0,0,.12)',
+//     },
+//   },
+//   'dark'
+// );
+
+const customStyles = {
+  head: {
+    style: {
+      fontSize: '15px',
+      fontWeight: 'bold',
+      color: '#000000',
+    },
+  },
+
+  // headCells: {
+  //   style: {
+  //     paddingLeft: '8px', // override the cell padding for head cells
+  //     paddingRight: '8px',
+  //   },
+  // },
+  // cells: {
+  //   style: {
+  //     paddingLeft: '8px', // override the cell padding for data cells
+  //     paddingRight: '8px',
+  //   },
+  // },
+};
 
 export default function Table() {
   const dispatch: AppDispatch = useDispatch();
@@ -65,7 +133,7 @@ export default function Table() {
       selector: (row: CreatedPost) => row.title,
       maxWidth: '10vw',
       // style: { maxWidth: '2vw' },
-      sortable: true,
+      // sortable: true,
     },
     {
       name: 'Image',
@@ -75,21 +143,21 @@ export default function Table() {
           src={row.image_url}
           // if there is no url provided or the url is wrong I use a default kitty image
           onError={(e) => {
-            e.currentTarget.src = 'https://placekitten.com/100/70';
+            e.currentTarget.src = 'https://placekitten.com/1000/700';
             e.currentTarget.alt = 'default image';
           }}
           alt={row.title}
-          style={{ width: '100px', height: '70px' }}
+          style={{ width: '100%', height: '100%' }}
           // style={{ width: '7vw', height: '5vw' }}
         />
       ),
       maxWidth: '10vw',
     },
-    {
+    /*{
       name: 'Content',
       selector: (row: CreatedPost) => row.content,
       maxWidth: '55vw',
-    },
+    },*/
     {
       name: 'Latitude',
       selector: (row: CreatedPost) => row.lat,
@@ -106,13 +174,13 @@ export default function Table() {
       cell: (row: CreatedPost) => (
         <>
           <button onClick={() => handleDelete(row.id)}>
-            <BsFillTrashFill className='delete-btn' />
+            <BsFillTrashFill className={'delete-btn enlarge'} />
           </button>
           <button onClick={() => handleUpdate(row.id)}>
-            <BsFillPencilFill className='update-btn' />
+            <BsFillPencilFill className={'update-btn enlarge'} />
           </button>
           <button onClick={() => handleChangeView(row)}>
-            <FaPlane className='delete-btn' />
+            <FaPlane className={'flyto-btn enlarge'} />
           </button>
         </>
       ),
@@ -122,10 +190,11 @@ export default function Table() {
 
   return (
     <div className={'dataTable'}>
+      <h1>Blog Posts</h1>
       <DataTable
         pagination
-        paginationPerPage={4}
-        paginationRowsPerPageOptions={[4, 5, 7, 9]}
+        paginationPerPage={7}
+        paginationRowsPerPageOptions={[7]}
         title='Blog posts'
         columns={columns}
         data={posts}
@@ -138,6 +207,10 @@ export default function Table() {
           const selectedIds = selected.selectedRows.map((post) => post.id);
           dispatch(selectPosts(selectedIds)); //might be usefull in the future
         }}
+        customStyles={customStyles}
+        noHeader
+        // theme='solarized'
+
         // onRowClicked={() => {
         //   console.log('clicked'); //might be usefull in the future
         // }}

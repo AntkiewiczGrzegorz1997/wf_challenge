@@ -1,0 +1,29 @@
+.navbar {
+  margin: 2vh 1.5vw;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 6vh;
+  border-radius: 10px;
+  background-color: var(--light-purple);
+  box-shadow: 0 10px 10px #ccc;
+}
+
+.navbutton {
+  background-color: var(--light-purple);
+  color: var(--purple);
+  font-weight: bold;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  position: relative;
+}
+
+.underline:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  background-color: var(--purple);
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickShowAddForm } from '../redux/post';
 import { AppDispatch, RootState } from '../redux/store';
+import '../styles/Navbar.css';
 
 export default function Navbar() {
   const dispatch: AppDispatch = useDispatch();

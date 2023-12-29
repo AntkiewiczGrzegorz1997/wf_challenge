@@ -1,6 +1,8 @@
 button {
-  background-color: white;
   border: none;
+  background: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .delete-btn {
@@ -13,5 +15,21 @@ button {
 }
 
 .dataTable {
-  width: 100vw;
+  width: 50vw;
+}
+
+.flyto-btn {
+  margin-left: 1vw;
+  color: var(--purple);
+}
+
+.rdt_TableBody {
+  height: 60vh;
+}
+
+.rdt_TableHead {
+  height: 8vh;
+}
+.rdt_TableFooter {
+  height: 10vh;
 }

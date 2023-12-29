@@ -89,7 +89,7 @@ const AddUpdatePostForm = () => {
     <div className='overlay'>
       <div className='addPostFormContainer'>
         <button
-          className='closeButton'
+          className={'closeButton enlarge'}
           onClick={() => {
             dispatch(clickShowAddForm());
             dispatch(selectCurrentPost(null));
@@ -99,6 +99,7 @@ const AddUpdatePostForm = () => {
         </button>
 
         <form className='form-container' onSubmit={handleSubmit}>
+          <h2>{currentPost ? 'Update your Post' : 'Create a Post'} </h2>
           <TextInputBox
             label='Title'
             placeholder='Enter title'
