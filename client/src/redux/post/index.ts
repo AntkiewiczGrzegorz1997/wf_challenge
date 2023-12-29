@@ -2,12 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { Post } from '../../types/posts';
 import { CreatedPost } from '../../types/posts';
+import L from 'leaflet';
 
 type PostState = {
   posts: CreatedPost[];
   selectedPosts: number[];
   showAddForm: boolean;
   currentPost: null | CreatedPost;
+  mapCenter: L.LatLngExpression;
 };
 
 const initialState: PostState = {
@@ -15,6 +17,7 @@ const initialState: PostState = {
   selectedPosts: [],
   showAddForm: false,
   currentPost: null,
+  mapCenter: [45, 2],
 };
 
 const postSlice = createSlice({
@@ -31,6 +34,7 @@ const postSlice = createSlice({
     },
     addPost: (state, action: PayloadAction<CreatedPost>) => {
       state.posts = [...state.posts, action.payload];
+      state.selectedPosts = [...state.selectedPosts, action.payload.id];
     },
 
     updateOnePost: (state, action: PayloadAction<CreatedPost>) => {
@@ -40,6 +44,10 @@ const postSlice = createSlice({
       // state.selectedPosts = state.selectedPosts.map((post: CreatedPost) =>
       //   post.id === action.payload.id ? action.payload : post
       // );
+    },
+
+    updateMapCenter: (state, action: PayloadAction<L.LatLngExpression>) => {
+      state.mapCenter = action.payload;
     },
 
     deleteOnePost: (state, action: PayloadAction<number>) => {
@@ -61,6 +69,7 @@ export const {
   selectPosts,
   addPost,
   updateOnePost,
+  updateMapCenter,
   deleteOnePost,
   clickShowAddForm,
   selectCurrentPost,

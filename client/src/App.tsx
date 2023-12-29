@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import AddUpdatePostForm from './components/AddUpdatePostForm';
+import Navbar from './components/Navbar';
 import './App.css';
-import { getPosts } from './apiService';
+import { getPosts, getCountryFromCoordinates } from './apiService';
 import { Post, CreatedPost } from './types/posts';
 import Table from './components/Table';
 import { AppDispatch, RootState } from './redux/store';
@@ -16,23 +17,38 @@ function App() {
   );
 
   useEffect(() => {
-    getPosts().then((data) => {
+    getPosts().then(async (data: CreatedPost[] | undefined) => {
       if (data) {
+        //first adding the fetched Posts to redux.
         dispatch(fetchAllPosts(data));
+
+        //in normal circumstances I would store the country in a database because this process is slow
+        // const postsWithCountry: CreatedPost[] = await Promise.all(
+        //   data.map(async (post: CreatedPost) => {
+        //     const country =
+        //       post.lat && post.long
+        //         ? await getCountryFromCoordinates(post.lat, post.long)
+        //         : 'Unknown';
+        //     return { ...post, country };
+        //   })
+        // );
+        // console.log(postsWithCountry);
+        // dispatch(fetchAllPosts(postsWithCountry));
       }
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
-      <div className='navBar'></div>
-      <button onClick={() => dispatch(clickShowAddForm())}>Create Post</button>
+      <Navbar />
+      <Table />
+      {showAddForm && <AddUpdatePostForm />}
+
       <Map />
 
       {/* <AddPostForm setPosts={setPosts} /> */}
-      <Table />
+
       {}
-      {showAddForm && <AddUpdatePostForm />}
     </div>
   );
 }

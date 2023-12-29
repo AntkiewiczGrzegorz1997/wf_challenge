@@ -13,6 +13,7 @@ export type CreatedPost = Post & {
   image_url: string | null;
   created_at: string;
   updated_at: string;
+  country?: string;
 };
 
 export type UpdatePost = Partial<Post>;

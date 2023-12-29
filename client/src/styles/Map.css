@@ -1,8 +1,13 @@
 .popup {
   height: auto;
-  width: auto;
+  width: 24vw;
 }
-.mapImage {
+.map-image {
   height: 14vw;
   width: 20vw;
+}
+
+.map-container {
+  height: 50vh;
+  width: 40vw;
 }

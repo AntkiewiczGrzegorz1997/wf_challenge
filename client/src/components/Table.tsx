@@ -3,6 +3,8 @@ import DataTable, { TableColumn } from 'react-data-table-component';
 import { CreatedPost } from '../types/posts';
 import { deletePost } from '../apiService';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
+import { FaPlane } from 'react-icons/fa';
+
 import '../styles/Table.css';
 import { AppDispatch, RootState } from '../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +13,7 @@ import {
   selectCurrentPost,
   deleteOnePost,
   selectPosts,
+  updateMapCenter,
 } from '../redux/post';
 
 // type TableProps = {
@@ -34,6 +37,14 @@ export default function Table() {
       .catch((e) => {
         console.error('Error deleting post:', e);
       });
+  };
+
+  const handleChangeView = (row: CreatedPost) => {
+    if (row.lat && row.long) {
+      dispatch(updateMapCenter([parseFloat(row.lat), parseFloat(row.long)]));
+    } else {
+      alert('Changing the View is not possible due to lacking coordinates');
+    }
   };
 
   const handleUpdate = (id: number) => {
@@ -100,6 +111,9 @@ export default function Table() {
           <button onClick={() => handleUpdate(row.id)}>
             <BsFillPencilFill className='update-btn' />
           </button>
+          <button onClick={() => handleChangeView(row)}>
+            <FaPlane className='delete-btn' />
+          </button>
         </>
       ),
       maxWidth: '10vw',
@@ -110,14 +124,16 @@ export default function Table() {
     <div className={'dataTable'}>
       <DataTable
         pagination
-        paginationPerPage={5}
-        paginationRowsPerPageOptions={[5, 7, 9]}
+        paginationPerPage={4}
+        paginationRowsPerPageOptions={[4, 5, 7, 9]}
         title='Blog posts'
         columns={columns}
         data={posts}
         highlightOnHover
         pointerOnHover
+        selectableRowSelected={(post) => post.id > 0} // selecting all posts by defualt.
         selectableRows
+        selectableRowsHighlight
         onSelectedRowsChange={(selected) => {
           const selectedIds = selected.selectedRows.map((post) => post.id);
           dispatch(selectPosts(selectedIds)); //might be usefull in the future

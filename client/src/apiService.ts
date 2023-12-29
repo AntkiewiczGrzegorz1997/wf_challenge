@@ -65,3 +65,17 @@ export async function updatePost(id: number, post: UpdatePost) {
     console.log(e);
   }
 }
+
+export async function getCountryFromCoordinates(lat: string, long: string) {
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${long}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json(); //add typescript here
+    const country: string = data.address.country;
+    return country;
+  } catch {
+    const country = 'Unknown';
+    return country;
+  }
+}

@@ -5,8 +5,64 @@
   --white: #ffffff;
 }
 
-.nav-bar {
-  margin-top: 4vh;
-  margin-left: 4vw;
-  margin-right: 4vw;
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.addPostFormContainer {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.navbar {
+  margin: 2vh 1.5vw;
+  /* margin-left: 2vw;
+  margin-right: 2vw; */
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 6vh;
+  border-radius: 20px;
+  background-color: var(--light-purple);
+  box-shadow: 0 10px 10px #ccc;
+}
+
+.navbutton {
+  background-color: var(--light-purple);
+  color: var(--purple);
+  font-weight: bold;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  position: relative;
+}
+
+.underline:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px; /* Adjust this to lower the underline */
+  height: 2px; /* Thickness of the underline */
+  background-color: var(--purple);
 }
