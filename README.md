@@ -40,4 +40,9 @@ npm test
 
 ## Thoughts
 
-I really enjoyed working on this coding challenge. Provided more time I would have definitely added some more cool functionality and tried to deploy it.
+I really enjoyed working on this coding challenge. Provided more time I would have liked to add the following improvements 🙂:
+
+- For a dedicated page component that displays the details of a specific post, such as when a user clicks on a post listing and is redirected to a separate Post page, I would have definitely used ```getPost()```. This is because all the necessary details are already included in getPosts and are displayed on the page.
+- Deploy the frontend along with the provided API using Netlify or Heroku
+- Improve the test coverage by adding more tests, including unit, integration, and end-to-end (e2e) tests, to cover all possible test cases.
+
