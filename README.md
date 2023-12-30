@@ -1,6 +1,12 @@
 # How does it look?
 
-Pictures
+<img width="1440" alt="Screenshot 2023-12-01 at 03 41 37" src="https://github.com/AntkiewiczGrzegorz1997/wf_challenge/screens/Screenshot 2023-12-30 at 14.52.04.png">
+<img width="1440" alt="Screenshot 2023-12-01 at 03 41 37" src="https://github.com/AntkiewiczGrzegorz1997/wf_challenge/screens/Screenshot 2023-12-30 at 14.52.29.png">
+<img width="1440" alt="Screenshot 2023-12-01 at 03 41 37" src="https://github.com/AntkiewiczGrzegorz1997/wf_challenge/screens/Screenshot 2023-12-30 at 14.52.56.png">
+<img width="1440" alt="Screenshot 2023-12-01 at 03 41 37" src="https://github.com/AntkiewiczGrzegorz1997/wf_challenge/screens/Screenshot 2023-12-30 at 14.53.13.png">
+<img width="1440" alt="Screenshot 2023-12-01 at 03 41 37" src="https://github.com/AntkiewiczGrzegorz1997/wf_challenge/screens/Screenshot 2023-12-30 at 14.53.52.png">
+<img width="1440" alt="Screenshot 2023-12-01 at 03 41 37" src="https://github.com/AntkiewiczGrzegorz1997/wf_challenge/screens/Screenshot 2023-12-30 at 14.54.png">
+
 
 ## Getting Started
 
