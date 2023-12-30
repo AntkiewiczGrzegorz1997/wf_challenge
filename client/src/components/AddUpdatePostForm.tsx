@@ -14,12 +14,7 @@ import {
   updateOnePost,
 } from '../redux/post';
 
-// type AddPostFormProps = {
-//   setPosts: (posts: Post[]) => void;
-//   postToUpdate: Post | null;
-// };
-
-const AddUpdatePostForm = () => {
+const AddUpdatePostForm = (): JSX.Element => {
   const dispatch: AppDispatch = useDispatch();
 
   const currentPost: CreatedPost | null = useSelector(
@@ -37,7 +32,6 @@ const AddUpdatePostForm = () => {
   // decide whether the form is used for update for creating a new post
   const initialPostState = currentPost ? currentPost : emptyForm;
   const [post, setPost] = useState<Post>(initialPostState);
-
   const isSubmitDisabled: boolean = !post.title.trim() || !post.content.trim();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,9 +58,6 @@ const AddUpdatePostForm = () => {
         if (data) {
           //secondly update the redux
           dispatch(updateOnePost(data));
-          // setPosts((prev: CreatedPost[]) => {
-          //   return prev.map((p) => (p.id === data.id ? data : p));
-          // });
         }
       });
 
@@ -99,7 +90,9 @@ const AddUpdatePostForm = () => {
         </button>
 
         <form className='form-container' onSubmit={handleSubmit}>
-          <h2>{currentPost ? 'Update your Post' : 'Create a Post'} </h2>
+          <h2>
+            {currentPost ? 'Update your Destination' : 'Create a Destination'}
+          </h2>
           <TextInputBox
             label='Title'
             placeholder='Enter title'
@@ -140,7 +133,7 @@ const AddUpdatePostForm = () => {
             type='submit'
             disabled={isSubmitDisabled}
           >
-            {currentPost ? 'Update Post' : 'Add Post'}
+            {currentPost ? 'Update Destination' : 'Add Destination'}
           </button>
         </form>
       </div>

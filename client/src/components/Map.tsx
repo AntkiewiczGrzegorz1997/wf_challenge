@@ -1,31 +1,15 @@
 import React, { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
-// import '../styles/Map.css';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-// import { ChangeMapView } from './ChangeMapView.jsx';
-import { AppDispatch, RootState } from '../redux/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { useSelector } from 'react-redux';
 import { CreatedPost } from '../types/posts';
 import '../styles/Map.css';
 import { ChangeMapView } from './ChangeMapView';
+import { formatDate } from '../utils/formatDate';
 
-// import mapData from '../data/countries.json';
-
-// const geoJsonData: any = mapData as any;
-
-// delete L.Icon.Default.prototype._getIconUrl;
-
-// L.Icon.Default.mergeOptions({
-//   iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-//   iconUrl: require('leaflet/dist/images/marker-icon.png'),
-//   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
-// });
-
-export default function Map(/*{ mapCenter, geoJsonData, geoJsonKey }*/) {
-  // const dispatch: AppDispatch = useDispatch();
-  // console.log(mapData);
-
+export default function Map(): JSX.Element {
   const posts: CreatedPost[] = useSelector(
     (state: RootState) => state.post.posts
   );
@@ -35,56 +19,13 @@ export default function Map(/*{ mapCenter, geoJsonData, geoJsonKey }*/) {
   const mapCenter: L.LatLngExpression = useSelector(
     (state: RootState) => state.post.mapCenter
   );
-  // const polygonStyle = {
-  //   fillColor: '#3990f7',
-  //   fillOpacity: 0.5,
-  //   color: '#0a3259',
-  // };
-  // console.log(geoJsonData);
 
-  //   const onEachObject = (object, layer) => {
-  //     const [timestamp, name, user] = [
-  //       object.properties.timestamp,
-  //       object.properties.name,
-  //       object.properties.user,
-  //     ];
-
-  //     const popupContent = `
-  //     Timestamp: ${timestamp}<br>
-  //     ${name ? `Name: ${name}<br>` : ``}
-  //     User: ${user}<br>
-  // `;
-
-  //     layer.bindPopup(popupContent);
-  //   };
-  // const countryNames = Array.from(new Set(posts.map((post) => post.country)));
-
-  // // Filter GeoJSON data to include only these countries
-  // const filteredGeoJsonData = {
-  //   ...geoJsonData,
-  //   features: geoJsonData.features.filter((feature: any) =>
-  //     countryNames.includes(feature.properties.ADMIN)
-  //   ),
-  // };
-
-  // console.log('test', filteredGeoJsonData.features);
-  console.log(posts);
-
-  useEffect(() => {
-    console.log(posts);
-  }, [posts]);
+  useEffect(() => {}, [posts]);
 
   return (
     <div className='map-container'>
-      <MapContainer
-        zoom={4}
-        center={mapCenter}
-        className='map'
-        // style={{ height: '100%', width: '100%' }} /*className='map'*/
-      >
+      <MapContainer zoom={4} center={mapCenter} className='map'>
         <ChangeMapView center={mapCenter} />
-
-        {/* <ChangeMapView center={mapCenter} /> */}
         <TileLayer
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -124,13 +65,11 @@ export default function Map(/*{ mapCenter, geoJsonData, geoJsonKey }*/) {
                     <br />
                     <strong>{post.title} </strong>
                     <br /> {post.content}
+                    <br /> {'Created on:'} {formatDate(post.created_at)}
                   </Popup>
                 </Marker>
               )
           )}
-        {/* {filteredGeoJsonData.features.length > 0 && (
-            <GeoJSON data={filteredGeoJsonData.features} />
-          )} */}
       </MapContainer>
     </div>
   );

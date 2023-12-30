@@ -16,11 +16,11 @@ describe('AddUpdatePostForm', () => {
       </Provider>
     );
 
-    expect(screen.getByText(/Create a Post/i)).toBeInTheDocument();
+    expect(screen.getByText(/Create a Destination/i)).toBeInTheDocument();
     expect(screen.getByText(/Title/i)).toBeInTheDocument();
     expect(screen.getByTestId(/inputTitle/i)).toBeInTheDocument();
     expect(screen.getByText(/Content/i)).toBeInTheDocument();
-    expect(screen.getByText(/Add Post/i)).toBeInTheDocument();
+    expect(screen.getByText(/Add Destination/i)).toBeInTheDocument();
   });
 
   it('allows input to be entered', () => {

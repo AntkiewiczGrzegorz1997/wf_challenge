@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import DataTable, {
-  TableColumn,
-  createTheme,
-} from 'react-data-table-component';
+import DataTable, { TableColumn } from 'react-data-table-component';
 import { CreatedPost } from '../types/posts';
 import { deletePost } from '../apiService';
 import { BsFillTrashFill, BsFillPencilFill } from 'react-icons/bs';
@@ -19,53 +15,6 @@ import {
   updateMapCenter,
 } from '../redux/post';
 
-// type TableProps = {
-//   posts: CreatedPost[];
-//   setPosts: (posts: CreatedPost[]) => void;
-// };
-
-// :root {
-//   --light-purple: #cecbef;
-//   --purple: #501e96;
-//   --font-grey: #71706f;
-//   --white: #ffffff;
-// }
-
-// createTheme(
-//   'solarized',
-//   {
-//     text: {
-//       primary: '#268bd2',
-//       secondary: '#2aa198',
-//     },
-//     header: {
-//       fontSize: '40px',
-//       fontWeight: 'bold',
-//     },
-
-//     background: {
-//       default: 'rgba(0,0,0,.2)',
-//     },
-//     context: {
-//       background: '#501e96',
-//       text: '#FFFFFF',
-//     },
-//     body: {
-//       background: 'rgba(0,0,0,.2)',
-//     },
-
-//     divider: {
-//       default: '#073642',
-//     },
-//     action: {
-//       button: 'rgba(0,0,0,.2)',
-//       hover: 'rgba(0,0,0,.08)',
-//       disabled: 'rgba(0,0,0,.12)',
-//     },
-//   },
-//   'dark'
-// );
-
 const customStyles = {
   head: {
     style: {
@@ -74,22 +23,9 @@ const customStyles = {
       color: '#000000',
     },
   },
-
-  // headCells: {
-  //   style: {
-  //     paddingLeft: '8px', // override the cell padding for head cells
-  //     paddingRight: '8px',
-  //   },
-  // },
-  // cells: {
-  //   style: {
-  //     paddingLeft: '8px', // override the cell padding for data cells
-  //     paddingRight: '8px',
-  //   },
-  // },
 };
 
-export default function Table() {
+export default function Table(): JSX.Element {
   const dispatch: AppDispatch = useDispatch();
   const posts: CreatedPost[] = useSelector(
     (state: RootState) => state.post.posts
@@ -107,6 +43,7 @@ export default function Table() {
       });
   };
 
+  // "Flies" you to the given location
   const handleChangeView = (row: CreatedPost) => {
     if (row.lat && row.long) {
       dispatch(updateMapCenter([parseFloat(row.lat), parseFloat(row.long)]));
@@ -126,14 +63,12 @@ export default function Table() {
     dispatch(clickShowAddForm());
   };
 
-  //customizing the columns for the tables
+  //customizing the columns for the table
   const columns: TableColumn<CreatedPost>[] = [
     {
       name: 'Title',
       selector: (row: CreatedPost) => row.title,
       maxWidth: '10vw',
-      // style: { maxWidth: '2vw' },
-      // sortable: true,
     },
     {
       name: 'Image',
@@ -148,16 +83,11 @@ export default function Table() {
           }}
           alt={row.title}
           style={{ width: '100%', height: '100%' }}
-          // style={{ width: '7vw', height: '5vw' }}
         />
       ),
       maxWidth: '10vw',
     },
-    /*{
-      name: 'Content',
-      selector: (row: CreatedPost) => row.content,
-      maxWidth: '55vw',
-    },*/
+
     {
       name: 'Latitude',
       selector: (row: CreatedPost) => row.lat,
@@ -190,30 +120,24 @@ export default function Table() {
 
   return (
     <div className={'dataTable'}>
-      <h1>Blog Posts</h1>
+      <p className='destinationtext'>Destinations</p>
       <DataTable
         pagination
         paginationPerPage={7}
         paginationRowsPerPageOptions={[7]}
-        title='Blog posts'
         columns={columns}
         data={posts}
         highlightOnHover
-        pointerOnHover
+        // pointerOnHover
         selectableRowSelected={(post) => post.id > 0} // selecting all posts by defualt.
         selectableRows
         selectableRowsHighlight
         onSelectedRowsChange={(selected) => {
           const selectedIds = selected.selectedRows.map((post) => post.id);
-          dispatch(selectPosts(selectedIds)); //might be usefull in the future
+          dispatch(selectPosts(selectedIds));
         }}
         customStyles={customStyles}
         noHeader
-        // theme='solarized'
-
-        // onRowClicked={() => {
-        //   console.log('clicked'); //might be usefull in the future
-        // }}
       />
     </div>
   );
