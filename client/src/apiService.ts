@@ -23,7 +23,6 @@ export async function getPost(id: string) {
 }
 
 export async function createPost(post: Post) {
-  //add a data validation check (either here or in the function )
   try {
     const response = await fetch(`${url}/posts`, {
       method: 'POST',

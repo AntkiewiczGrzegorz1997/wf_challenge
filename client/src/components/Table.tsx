@@ -120,7 +120,18 @@ export default function Table(): JSX.Element {
 
   return (
     <div className={'dataTable'}>
-      <p className='destinationtext'>Destinations</p>
+      <div className='tabletop'>
+        <p className='destinationtext'>Destinations</p>
+        <button
+          className={'addbutton enlargesmall'}
+          onClick={() => {
+            dispatch(clickShowAddForm());
+          }}
+          id={'button1'}
+        >
+          Add Destination
+        </button>
+      </div>
       <DataTable
         pagination
         paginationPerPage={7}

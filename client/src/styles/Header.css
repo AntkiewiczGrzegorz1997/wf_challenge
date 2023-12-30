@@ -4,8 +4,6 @@
   justify-content: left;
   align-items: center;
   height: 6vh;
-  /* background-color: var(--light-purple);
-  box-shadow: 0 10px 10px #ccc; */
 }
 
 .navbutton {
@@ -23,16 +21,6 @@
 .enlargesmall:hover {
   transform: scale(1.05);
 }
-
-/* .underline:hover::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -3px;
-  height: 2px;
-  background-color: var(--purple);
-} */
 
 .logo {
   height: 4vh;

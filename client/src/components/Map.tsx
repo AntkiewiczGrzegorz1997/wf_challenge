@@ -24,7 +24,7 @@ export default function Map(): JSX.Element {
 
   return (
     <div className='map-container'>
-      <MapContainer zoom={4} center={mapCenter} className='map'>
+      <MapContainer zoom={5} center={mapCenter} className='map'>
         <ChangeMapView center={mapCenter} />
         <TileLayer
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
