@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllPosts } from './redux/post';
 import Map from './components/Map';
 
-function App() {
+function App(): JSX.Element {
   const dispatch: AppDispatch = useDispatch();
   const showAddForm: boolean = useSelector(
     (state: RootState) => state.post.showAddForm

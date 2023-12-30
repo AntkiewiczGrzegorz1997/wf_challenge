@@ -29,7 +29,7 @@ const AddUpdatePostForm = (): JSX.Element => {
     image_url: '',
   };
 
-  // decide whether the form is used for update for creating a new post
+  // decide whether the form is used for update or for creating a new post
   const initialPostState = currentPost ? currentPost : emptyForm;
   const [post, setPost] = useState<Post>(initialPostState);
   const isSubmitDisabled: boolean = !post.title.trim() || !post.content.trim();
@@ -64,7 +64,7 @@ const AddUpdatePostForm = (): JSX.Element => {
       //erase the currentPost upon form submission for update
       dispatch(selectCurrentPost(null));
 
-      //only for update behaviour the form is closing after the update automatically
+      //only for update behaviour the form is closing after the update automatically. When we add a point we might want to add many at once and thats why I do not close it.
       dispatch(clickShowAddForm());
     } else {
       createPost(post).then((data) => {
@@ -73,6 +73,7 @@ const AddUpdatePostForm = (): JSX.Element => {
         }
       });
     }
+
     setPost(emptyForm);
   };
 

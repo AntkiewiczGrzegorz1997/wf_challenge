@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Post } from '../../types/posts';
 import { CreatedPost } from '../../types/posts';
 import L from 'leaflet';
 

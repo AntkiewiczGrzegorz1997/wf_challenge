@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/Header.css';
 import { FaPlane } from 'react-icons/fa';
 

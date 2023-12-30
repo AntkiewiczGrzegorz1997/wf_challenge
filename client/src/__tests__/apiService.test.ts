@@ -15,7 +15,7 @@ beforeEach(() => {
 });
 
 describe('apiService', () => {
-  test('getPosts fetches and returns data successfully', async () => {
+  it('getPosts fetches and returns data successfully', async () => {
     const mockPosts: CreatedPost[] = [
       {
         id: 1,
@@ -35,7 +35,7 @@ describe('apiService', () => {
     expect(posts).toEqual(mockPosts);
   });
 
-  test('getPost fetches and returns a single post', async () => {
+  it('getPost fetches and returns a single post', async () => {
     const mockPost: CreatedPost = {
       id: 1,
       title: 'Test Post',
@@ -53,7 +53,7 @@ describe('apiService', () => {
     expect(post).toEqual(mockPost);
   });
 
-  test('createPost sends a POST request with the correct body', async () => {
+  it('createPost sends a POST request with the correct body', async () => {
     const newPost: Post = { title: 'New Post', content: 'Content' };
     fetchMock.mockResponseOnce(JSON.stringify({ ...newPost, id: 1 }));
 
@@ -66,7 +66,7 @@ describe('apiService', () => {
     expect(createdPost).toEqual({ ...newPost, id: 1 });
   });
 
-  test('deletePost sends a DELETE request', async () => {
+  it('deletePost sends a DELETE request', async () => {
     fetchMock.mockResponseOnce(JSON.stringify({}));
 
     await deletePost('1');
@@ -75,7 +75,7 @@ describe('apiService', () => {
     });
   });
 
-  test('updatePost sends a PUT request with the correct body', async () => {
+  it('updatePost sends a PUT request with the correct body', async () => {
     const updatedPost: UpdatePost = {
       title: 'Some Updated Post',
       content: 'Some Updated Content',

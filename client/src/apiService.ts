@@ -12,6 +12,7 @@ export async function getPosts() {
   }
 }
 
+// Due to time constraints This method is not utilized (for example in a dedicated Post component) since all of the details are already present in getPosts and displayed on the page.
 export async function getPost(id: string) {
   try {
     const response = await fetch(`${url}/posts/${id}`);

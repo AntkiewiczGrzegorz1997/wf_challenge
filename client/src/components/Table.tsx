@@ -68,7 +68,6 @@ export default function Table(): JSX.Element {
     {
       name: 'Title',
       selector: (row: CreatedPost) => row.title,
-      maxWidth: '10vw',
     },
     {
       name: 'Image',
@@ -85,22 +84,18 @@ export default function Table(): JSX.Element {
           style={{ width: '100%', height: '100%' }}
         />
       ),
-      maxWidth: '10vw',
     },
 
     {
       name: 'Latitude',
       selector: (row: CreatedPost) => row.lat,
-      maxWidth: '10vw',
     },
     {
       name: 'Longitude',
       selector: (row: CreatedPost) => row.long,
-      maxWidth: '10vw',
     },
     {
       name: 'Actions',
-      button: true,
       cell: (row: CreatedPost) => (
         <>
           <button onClick={() => handleDelete(row.id)}>
@@ -114,7 +109,6 @@ export default function Table(): JSX.Element {
           </button>
         </>
       ),
-      maxWidth: '10vw',
     },
   ];
 
@@ -139,7 +133,6 @@ export default function Table(): JSX.Element {
         columns={columns}
         data={posts}
         highlightOnHover
-        // pointerOnHover
         selectableRowSelected={(post) => post.id > 0} // selecting all posts by defualt.
         selectableRows
         selectableRowsHighlight

@@ -6,22 +6,6 @@
   height: 6vh;
 }
 
-.navbutton {
-  background: var(--purple);
-  color: white;
-  height: 6vh;
-  padding-right: 1vw;
-  padding-left: 1vw;
-  border-radius: 8px;
-  font-weight: bold;
-  margin-right: 2vw;
-  margin-left: 2vw;
-  font-size: 24px;
-}
-.enlargesmall:hover {
-  transform: scale(1.05);
-}
-
 .logo {
   height: 4vh;
 }
